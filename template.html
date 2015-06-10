@@ -471,8 +471,7 @@ margin-top: 10px;
         </div>
         <!-- Feedback items for the user -->
         <div class="col-md-12 text-center feedback">
-            <p class="small"> <span id="i18n_working_task">You are working now on task:</span> 
-                <span id="task-id" class="label label-warning">#</span>
+            <p class="small">
                 <span id="i18n_tasks_completed">You have completed:</span> 
                 <span id="done" class="label label-info"></span> 
                 <span id="i18n_tasks_from">tasks from</span>
@@ -587,7 +586,6 @@ pybossa.presentTask(function(task, deferred) {
         $("#title").html('').append(task.info.html_song);
         $("#album").html('').append(task.info.html_album);
         $("#license").html('').append(task.info.html_license);
-        $('#task-id').html(task.id);
         $('#audio_' + task.id).audioPlayer();
         $('#btn-answer').off('click').on('click', function(evt) {
             var answer = $('#myFeeling').text();
