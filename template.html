@@ -1,0 +1,677 @@
+<style>
+.app-title {
+  display: none;
+}
+.upper {
+    background-color: rgba(0,0,0,0.3);
+}
+#question{
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 30px;
+  color: #2B9884;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.bg-container{
+    background-color: #ccc;
+    border-radius: 5px;
+    height: auto;
+    padding: 20px 0 20px 0px;
+    margin-bottom: 30px;
+}
+
+#artist{
+    font-size: 24px
+}
+#artist a{
+    color: #666;
+}
+
+#title, #album, #license{
+font-size: 18px;
+margin-top: 10px;
+}
+
+.feedback{
+    margin-top: 15px;
+}
+
+#myFeeling{
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+#sliderFeeling{
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.rangeslider__fill{
+    background: inherit !important;
+}
+
+@media (max-width: 767px){
+
+    .text-center-mbl{
+        text-align: center;
+    }
+
+    .top20-mbl{
+        margin-top: 20px
+    }
+    #artist{
+        font-size: 20px
+    }
+    #title, #album, #license{
+        font-size: 16px;
+    }
+}
+
+/* @media (max-width: 360px) {
+    .feedback {margin-top:430px;}
+} */
+
+</style>
+<style>
+.audioplayer
+{
+    height: 2.5em; /* 40 */
+    color: #fff;
+    text-shadow: 1px 1px 0 #000;
+    border: 1px solid #222;
+    position: relative;
+    z-index: 1;
+    background: #333;
+    background: -webkit-gradient( linear, left top, left bottom, from( #444 ), to( #222 ) );
+    background: -webkit-linear-gradient( top, #444, #222 );
+    background: -moz-linear-gradient( top, #444, #222 );
+    background: -ms-radial-gradient( top, #444, #222 );
+    background: -o-linear-gradient( top, #444, #222 );
+    background: linear-gradient( top, #444, #222 );
+    -webkit-box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15 ), 0 0 1.25em rgba( 0, 0, 0, .5 ); /* 20 */
+    -moz-box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15 ), 0 0 1.25em rgba( 0, 0, 0, .5 ); /* 20 */
+    box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15 ), 0 0 1.25em rgba( 0, 0, 0, .5 ); /* 20 */
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: 12px;
+}
+    .audioplayer-mini
+    {
+        width: 2.5em; /* 40 */
+        margin: 0 auto;
+    }
+    .audioplayer > div
+    {
+        position: absolute;
+    }
+    .audioplayer-playpause
+    {
+        width: 2.5em; /* 40 */
+        height: 100%;
+        text-align: left;
+        text-indent: -9999px;
+        cursor: pointer;
+        z-index: 2;
+        top: 0;
+        left: 0;
+    }
+        .audioplayer:not(.audioplayer-mini) .audioplayer-playpause
+        {
+            border-right: 1px solid #555;
+            border-right-color: rgba( 255, 255, 255, .1 );
+        }
+        .audioplayer-mini .audioplayer-playpause
+        {
+            width: 100%;
+        }
+        .audioplayer-playpause:hover,
+        .audioplayer-playpause:focus
+        {
+            background-color: #222;
+        }
+        .audioplayer-playpause a
+        {
+            display: block;
+        }
+        .audioplayer:not(.audioplayer-playing) .audioplayer-playpause a
+        {
+            width: 0;
+            height: 0;
+            border: 0.5em solid transparent; /* 8 */
+            border-right: none;
+            border-left-color: #fff;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -0.5em 0 0 -0.25em; /* 8 4 */
+        }
+        .audioplayer-playing .audioplayer-playpause a
+        {
+            width: 0.75em; /* 12 */
+            height: 0.75em; /* 12 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -0.375em 0 0 -0.375em; /* 6 */
+        }
+            .audioplayer-playing .audioplayer-playpause a:before,
+            .audioplayer-playing .audioplayer-playpause a:after
+            {
+                width: 40%;
+                height: 100%;
+                background-color: #fff;
+                content: '';
+                position: absolute;
+                top: 0;
+            }
+            .audioplayer-playing .audioplayer-playpause a:before
+            {
+                left: 0;
+            }
+            .audioplayer-playing .audioplayer-playpause a:after
+            {
+                right: 0;
+            }
+    .audioplayer-time
+    {
+        width: 4.375em; /* 70 */
+        height: 100%;
+        line-height: 2.375em; /* 38 */
+        text-align: center;
+        z-index: 2;
+        top: 0;
+    }
+        .audioplayer-time-current
+        {
+            border-left: 1px solid #111;
+            border-left-color: rgba( 0, 0, 0, .25 );
+            left: 2.5em; /* 40 */
+        }
+        .audioplayer-time-duration
+        {
+            border-right: 1px solid #555;
+            border-right-color: rgba( 255, 255, 255, .1 );
+            right: 2.5em; /* 40 */
+        }
+            .audioplayer-novolume .audioplayer-time-duration
+            {
+                border-right: 0;
+                right: 0;
+            }
+    .audioplayer-bar
+    {
+        height: 0.875em; /* 14 */
+        background-color: #222;
+        cursor: pointer;
+        z-index: 1;
+        top: 50%;
+        right: 6.875em; /* 110 */
+        left: 6.875em; /* 110 */
+        margin-top: -0.438em; /* 7 */
+    }
+        .audioplayer-novolume .audioplayer-bar
+        {
+            right: 4.375em; /* 70 */
+        }
+        .audioplayer-bar div
+        {
+            width: 0;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .audioplayer-bar-loaded
+        {
+            background-color: #333;
+            z-index: 1;
+        }
+        .audioplayer-bar-played
+        {
+            background: #aad5cd;
+            background: -webkit-gradient( linear, left top, right top, from( #aad5cd ), to( #2b9884 ) );
+            background: -webkit-linear-gradient( left, #aad5cd, #2b9884 );
+            background: -moz-linear-gradient( left, #aad5cd, #2b9884 );
+            background: -ms-radial-gradient( left, #aad5cd, #2b9884 );
+            background: -o-linear-gradient( left, #aad5cd, #2b9884 );
+            background: linear-gradient( left, #aad5cd, #2b9884 );
+            z-index: 2;
+        }
+    .audioplayer-volume
+    {
+        width: 2.5em; /* 40 */
+        height: 100%;
+        border-left: 1px solid #111;
+        border-left-color: rgba( 0, 0, 0, .25 );
+        text-align: left;
+        text-indent: -9999px;
+        cursor: pointer;
+        z-index: 2;
+        top: 0;
+        right: 0;
+    }
+        .audioplayer-volume:hover,
+        .audioplayer-volume:focus
+        {
+            background-color: #222;
+        }
+        .audioplayer-volume-button
+        {
+            width: 100%;
+            height: 100%;
+        }
+            .audioplayer-volume-button a
+            {
+                width: 0.313em; /* 5 */
+                height: 0.375em; /* 6 */
+                background-color: #fff;
+                display: block;
+                position: relative;
+                z-index: 1;
+                top: 40%;
+                left: 35%;
+            }
+                .audioplayer-volume-button a:before,
+                .audioplayer-volume-button a:after
+                {
+                    content: '';
+                    position: absolute;
+                }
+                .audioplayer-volume-button a:before
+                {
+                    width: 0;
+                    height: 0;
+                    border: 0.5em solid transparent; /* 8 */
+                    border-left: none;
+                    border-right-color: #fff;
+                    z-index: 2;
+                    top: 50%;
+                    right: -0.25em;
+                    margin-top: -0.5em; /* 8 */
+                }
+                .audioplayer:not(.audioplayer-mute) .audioplayer-volume-button a:after
+                {
+                    /* "volume" icon by Nicolas Gallagher, http://nicolasgallagher.com/pure-css-gui-icons */
+                    width: 0.313em; /* 5 */
+                    height: 0.313em; /* 5 */
+                    border: 0.25em double #fff; /* 4 */
+                    border-width: 0.25em 0.25em 0 0; /* 4 */
+                    left: 0.563em; /* 9 */
+                    top: -0.063em; /* 1 */
+                    -webkit-border-radius: 0 0.938em 0 0; /* 15 */
+                    -moz-border-radius: 0 0.938em 0 0; /* 15 */
+                    border-radius: 0 0.938em 0 0; /* 15 */
+                    -webkit-transform: rotate( 45deg );
+                    -moz-transform: rotate( 45deg );
+                    -ms-transform: rotate( 45deg );
+                    -o-transform: rotate( 45deg );
+                    transform: rotate( 45deg );
+                }
+        .audioplayer-volume-adjust
+        {
+            height: 6.25em; /* 100 */
+            cursor: default;
+            position: absolute;
+            left: 0;
+            right: -1px;
+            top: -9999px;
+            background: #222;
+            background: -webkit-gradient( linear, left top, left bottom, from( #444 ), to( #222 ) );
+            background: -webkit-linear-gradient( top, #444, #222 );
+            background: -moz-linear-gradient( top, #444, #222 );
+            background: -ms-radial-gradient( top, #444, #222 );
+            background: -o-linear-gradient( top, #444, #222 );
+            background: linear-gradient( top, #444, #222 );
+            -webkit-border-top-left-radius: 2px;
+            -webkit-border-top-right-radius: 2px;
+            -moz-border-radius-topleft: 2px;
+            -moz-border-radius-topright: 2px;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+            .audioplayer-volume:not(:hover) .audioplayer-volume-adjust
+            {
+                opacity: 0;
+            }
+            .audioplayer-volume:hover .audioplayer-volume-adjust
+            {
+                top: auto;
+                bottom: 100%;
+            }
+            .audioplayer-volume-adjust > div
+            {
+                width: 40%;
+                height: 80%;
+                background-color: #222;
+                cursor: pointer;
+                position: relative;
+                z-index: 1;
+                margin: 30% auto 0;
+            }
+                .audioplayer-volume-adjust div div
+                {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    background: #aad5cd;
+                    background: -webkit-gradient( linear, left bottom, left top, from( #aad5cd ), to( #2b9884 ) );
+                    background: -webkit-linear-gradient( bottom, #aad5cd, #2b9884 );
+                    background: -moz-linear-gradient( bottom, #aad5cd, #2b9884 );
+                    background: -ms-radial-gradient( bottom, #aad5cd, #2b9884 );
+                    background: -o-linear-gradient( bottom, #aad5cd, #2b9884 );
+                    background: linear-gradient( bottom, #aad5cd, #2b9884 );
+                }
+        .audioplayer-novolume .audioplayer-volume
+        {
+            display: none;
+        }
+
+    .audioplayer-play,
+    .audioplayer-pause,
+    .audioplayer-volume a
+    {
+        -webkit-filter: drop-shadow( 1px 1px 0 #000 );
+        -moz-filter: drop-shadow( 1px 1px 0 #000 );
+        -ms-filter: drop-shadow( 1px 1px 0 #000 );
+        -o-filter: drop-shadow( 1px 1px 0 #000 );
+        filter: drop-shadow( 1px 1px 0 #000 );
+    }
+    .audioplayer-bar,
+    .audioplayer-bar div,
+    .audioplayer-volume-adjust div
+    {
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+    .audioplayer-bar,
+    .audioplayer-volume-adjust > div
+    {
+        -webkit-box-shadow: -1px -1px 0 rgba( 0, 0, 0, .5 ), 1px 1px 0 rgba( 255, 255, 255, .1 );
+        -moz-box-shadow: -1px -1px 0 rgba( 0, 0, 0, .5 ), 1px 1px 0 rgba( 255, 255, 255, .1 );
+        box-shadow: -1px -1px 0 rgba( 0, 0, 0, .5 ), 1px 1px 0 rgba( 255, 255, 255, .1 );
+    }
+    .audioplayer-volume-adjust div div,
+    .audioplayer-bar-played
+    {
+        -webkit-box-shadow: inset 0 0 5px rgba( 255, 255, 255, .5 );
+        -moz-box-shadow: inset 0 0 5px rgba( 255, 255, 255, .5 );
+        box-shadow: inset 0 0 5px rgba( 255, 255, 255, .5 );
+    }
+    .audioplayer-volume-adjust
+    {
+        -webkit-box-shadow: -2px -2px 2px rgba( 0, 0, 0, .15 ), 2px -2px 2px rgba( 0, 0, 0, .15 );
+        -moz-box-shadow: -2px -2px 2px rgba( 0, 0, 0, .15 ), 2px -2px 2px rgba( 0, 0, 0, .15 );
+        box-shadow: -2px -2px 2px rgba( 0, 0, 0, .15 ), 2px -2px 2px rgba( 0, 0, 0, .15 );
+    }
+    .audioplayer *,
+    .audioplayer *:before,
+    .audioplayer *:after
+    {
+        -webkit-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        -moz-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        -ms-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        -o-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+    }
+</style>
+<script>
+/*
+    AUTHOR: Osvaldas Valutis, www.osvaldas.info
+*/
+
+(function(e,t,n,r){var i="ontouchstart"in t,s=i?"touchstart":"mousedown",o=i?"touchmove":"mousemove",u=i?"touchend":"mouseup",a=i?"touchcancel":"mouseup",f=function(e){var t=Math.floor(e/3600),n=Math.floor(e%3600/60),r=Math.ceil(e%3600%60);return(t==0?"":t>0&&t.toString().length<2?"0"+t+":":t+":")+(n.toString().length<2?"0"+n:n)+":"+(r.toString().length<2?"0"+r:r)},l=function(e){var t=n.createElement("audio");return!!(t.canPlayType&&t.canPlayType("audio/"+e.split(".").pop().toLowerCase()+";").replace(/no/,""))};e.fn.audioPlayer=function(t){var t=e.extend({classPrefix:"audioplayer",strPlay:"Play",strPause:"Pause",strVolume:"Volume"},t),n={},r={playPause:"playpause",playing:"playing",time:"time",timeCurrent:"time-current",timeDuration:"time-duration",bar:"bar",barLoaded:"bar-loaded",barPlayed:"bar-played",volume:"volume",volumeButton:"volume-button",volumeAdjust:"volume-adjust",noVolume:"novolume",mute:"mute",mini:"mini"};for(var u in r)n[u]=t.classPrefix+"-"+r[u];this.each(function(){if(e(this).prop("tagName").toLowerCase()!="audio")return false;var r=e(this),u=r.attr("src"),c=r.get(0).getAttribute("autoplay"),c=c===""||c==="autoplay"?true:false,h=r.get(0).getAttribute("loop"),h=h===""||h==="loop"?true:false,p=false;if(typeof u==="undefined"){r.find("source").each(function(){u=e(this).attr("src");if(typeof u!=="undefined"&&l(u)){p=true;return false}})}else if(l(u))p=true;var d=e('<div class="'+t.classPrefix+'">'+(p?e("<div>").append(r.eq(0).clone()).html():'<embed src="'+u+'" width="0" height="0" volume="100" autostart="'+c.toString()+'" loop="'+h.toString()+'" />')+'<div class="'+n.playPause+'" title="'+t.strPlay+'"><a href="#">'+t.strPlay+"</a></div></div>"),v=p?d.find("audio"):d.find("embed"),v=v.get(0);if(p){d.find("audio").css({width:0,height:0,visibility:"hidden"});d.append('<div class="'+n.time+" "+n.timeCurrent+'"></div><div class="'+n.bar+'"><div class="'+n.barLoaded+'"></div><div class="'+n.barPlayed+'"></div></div><div class="'+n.time+" "+n.timeDuration+'"></div><div class="'+n.volume+'"><div class="'+n.volumeButton+'" title="'+t.strVolume+'"><a href="#">'+t.strVolume+'</a></div><div class="'+n.volumeAdjust+'"><div><div></div></div></div></div>');var m=d.find("."+n.bar),g=d.find("."+n.barPlayed),y=d.find("."+n.barLoaded),b=d.find("."+n.timeCurrent),w=d.find("."+n.timeDuration),E=d.find("."+n.volumeButton),S=d.find("."+n.volumeAdjust+" > div"),x=0,T=function(e){theRealEvent=i?e.originalEvent.touches[0]:e;v.currentTime=Math.round(v.duration*(theRealEvent.pageX-m.offset().left)/m.width())},N=function(e){theRealEvent=i?e.originalEvent.touches[0]:e;v.volume=Math.abs((theRealEvent.pageY-(S.offset().top+S.height()))/S.height())},C=setInterval(function(){y.width(v.buffered.end(0)/v.duration*100+"%");if(v.buffered.end(0)>=v.duration)clearInterval(C)},100);var k=v.volume,L=v.volume=.111;if(Math.round(v.volume*1e3)/1e3==L)v.volume=k;else d.addClass(n.noVolume);w.html("…");b.text(f(0));v.addEventListener("loadeddata",function(){w.text(f(v.duration));S.find("div").height(v.volume*100+"%");x=v.volume});v.addEventListener("timeupdate",function(){b.text(f(v.currentTime));g.width(v.currentTime/v.duration*100+"%")});v.addEventListener("volumechange",function(){S.find("div").height(v.volume*100+"%");if(v.volume>0&&d.hasClass(n.mute))d.removeClass(n.mute);if(v.volume<=0&&!d.hasClass(n.mute))d.addClass(n.mute)});v.addEventListener("ended",function(){d.removeClass(n.playing)});m.on(s,function(e){T(e);m.on(o,function(e){T(e)})}).on(a,function(){m.unbind(o)});E.on("click",function(){if(d.hasClass(n.mute)){d.removeClass(n.mute);v.volume=x}else{d.addClass(n.mute);x=v.volume;v.volume=0}return false});S.on(s,function(e){N(e);S.on(o,function(e){N(e)})}).on(a,function(){S.unbind(o)})}else d.addClass(n.mini);if(c)d.addClass(n.playing);d.find("."+n.playPause).on("click",function(){if(d.hasClass(n.playing)){e(this).attr("title",t.strPlay).find("a").html(t.strPlay);d.removeClass(n.playing);p?v.pause():v.Stop()}else{e(this).attr("title",t.strPause).find("a").html(t.strPause);d.addClass(n.playing);p?v.play():v.Play()}return false});r.replaceWith(d)});return this}})(jQuery,window,document)
+</script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/1.2.1/rangeslider.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/1.2.1/rangeslider.min.js"></script>
+<div class="row">
+    <!-- Success and Error Messages for the user --> 
+    <div class="col-md-6 col-md-offset-2" style="height:50px">
+        <div id="success" class="alert alert-success" style="display:none;">
+            <a class="close">×</a>
+            <strong id="i18n_welldone">Well done!</strong> <span id="i18n_welldone_text">Your answer has been saved</span>
+        </div>
+        <div id="loading" class="alert alert-info" style="display:none;">
+            <a class="close">×</a>
+            <span id="i18n_loading_next_task">Loading next task...</span>
+        </div>
+        <div id="taskcompleted" class="alert alert-info" style="display:none;">
+            <strong id="i18n_task_completed">The task has been completed!</strong> <span id="i18n_thanks">Thanks a lot!</span>
+        </div>
+        <div id="finish" class="alert alert-success" style="display:none;">
+            <strong id="i18n_congratulations">Congratulations!</strong> <span id="i18n_congratulations_text">You have participated in all available tasks!</span>
+            <br/>
+            <div class="alert-actions">
+                <a class="btn small" href="/">Go back</a>
+                <a class="btn small" href="/app">or, Check other projects</a>
+            </div>
+        </div>
+        <div id="error" class="alert alert-danger" style="display:none;">
+            <a class="close">×</a>
+            <strong>Error!</strong> Something went wrong, please contact the site administrators
+        </div>
+    </div> <!-- End Success and Error Messages for the user -->
+</div> <!-- End of Row -->
+
+<!--
+    Task DOM for loading the Flickr Images
+    It uses the class="skeleton" to identify the elements that belong to the
+    task.
+-->
+<div class="upper">
+<div class="row skeleton"> <!-- Start Skeleton Row-->
+    <div class="col-md-12"><!-- Start of Question and Submission DIV (column) -->
+        <h1 id="question"><span id="i18n_question">How do you feel about this song?</span></h1> <!-- The question will be loaded here -->
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="bg-container col-md-8 col-md-offset-2">
+        <div class="col-xs-12 col-md-4 text-center-mbl">
+            <img id="cover" class="hidden-xs img-thumbnail img-responsive img-polaroid">
+        </div>
+        <div class="col-xs-12 col-md-8 text-center-mbl top20-mbl">
+            <div id="artist"></div>
+            <div id="title"></div>
+            <div id="album"></div>
+            <div id="license"></div>
+            <div id="sound-clip"></div>
+        </div>
+        <!-- Feedback items for the user -->
+        <div class="col-md-12 text-center feedback">
+            <p class="small"> <span id="i18n_working_task">You are working now on task:</span> 
+                <span id="task-id" class="label label-warning">#</span>
+                <span id="i18n_tasks_completed">You have completed:</span> 
+                <span id="done" class="label label-info"></span> 
+                <span id="i18n_tasks_from">tasks from</span>
+                <span id="total" class="label label-info"></span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="answer" class="col-md-6 col-md-offset-3 text-center">
+ <!-- Start DIV for the submission buttons -->
+    <div id="myFeeling"></div>
+    <input id="sliderFeeling" type="range" min="0" max="90" step="1" value="45" />
+    <button id="btn-answer" class="btn btn-lg btn-primary" style="margin-top:20px;">Save my answer</button>
+</div><!-- End of DIV for the submission buttons -->
+
+<!-- 
+    This application uses Disqus to allow users to provide some feedback.
+    The next section includes a button that when a user clicks on it will
+    load the comments, if any, for the given task
+-->
+<div class="row">
+    <div id="disqus_show_btn" class="col-md-offset-3 col-md-6" style="margin-top:5px;">
+    <button class="btn btn-link btn-disqus" onclick="loadDisqus()"><i class="fa fa-comments"></i> <span id="i18n_show_comments">Show comments</span></button>
+        <button class="btn btn-link btn-disqus" onclick="loadDisqus()" style="display:none"><i class="fa fa-comments"></i> <span id="i18n_hide_comments">Hide comments</span></button>
+    </div><!-- End of Disqus Button section -->
+    <!-- Disqus thread for the given task -->
+    <div id="disqus_thread" style="margin-top:5px;display:none"></div>
+</div>
+</div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    function loadDisqus() {
+    $("#disqus_thread").toggle();
+    $(".btn-disqus").toggle();
+    var disqus_shortname = 'pybossa'; // required: replace example with your forum shortname
+    //var disqus_identifier = taskId;
+    var disqus_developer = 1;
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    }
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<script>
+$('#sliderFeeling').rangeslider({polyfill: false});
+
+function loadUserProgress() {
+    pybossa.userProgress('jamendo').done(function(data){
+        var pct = Math.round((data.done*100)/data.total);
+        $("#progress").css("width", pct.toString() +"%");
+        $("#progress").attr("title", pct.toString() + "% completed!");
+        $("#progress").tooltip({'placement': 'left'}); 
+        $("#total").text(data.total);
+        $("#done").text(data.done);
+    });
+}
+
+pybossa.taskLoaded(function(task, deferred) {
+    if ( !$.isEmptyObject(task) ) {
+        var embed = $("<audio>");
+        embed.attr("id", "audio_" + task.id);
+        embed.attr("src", task.info.audio_cdn);
+        embed.attr("width", '100%');
+        embed.prop('controls', true);
+        task.info.embed = embed;
+
+        // ARTIST
+        var p = $("<p>");
+        var artist= $("<a>");
+        artist.attr('href', task.info.shorturl);
+        artist.text(task.info.artist_name);
+        p.append(artist);
+        task.info.html_artist = p;
+
+        // SONG
+        var p = $("<p>");
+        p.html('Song: ');
+        var song = $("<span>");
+        song.attr('href', task.info.shorturl);
+        song.text(task.info.name);
+        p.append(song);
+        task.info.html_song = p;
+
+
+        // ALBUM
+        var p = $("<p>");
+        p.html('Album: ');
+        var album = $("<span>");
+        album.attr('href', task.info.shorturl);
+        album.text(task.info.album_name);
+        p.append(album);
+        task.info.html_album = p;
+
+        // LICENSE
+        var p = $("<p>");
+        p.html('License: ');
+        var license = $("<a>");
+        license.attr('href', task.info.license_ccurl);
+        license.text('Creative Commons');
+        p.append(license);
+        task.info.html_license = p;
+
+
+        deferred.resolve(task);
+    }
+    else {
+        deferred.resolve(task);
+    }
+});
+
+function setFeelingFromSliderValue() {
+    var slider = document.getElementById('sliderFeeling');
+    var myFeeling = document.getElementById('myFeeling');
+    var daFeeling = calculateDaFeeling(slider.value);
+    myFeeling.innerHTML = daFeeling;
+}
+
+function calculateDaFeeling(value) {
+    if (value < 10) return "Joy";
+    if (value < 20) return "Excited";
+    if (value < 30) return "Relaxed";
+    if (value < 40) return "Amused";
+    if (value < 50) return "Indifferent";
+    if (value < 60) return "Sad";
+    if (value < 70) return "Bored";
+    if (value < 80) return "Annoyed";
+    if (value < 90) return "Shocked";
+    return "Happy";
+}
+
+pybossa.presentTask(function(task, deferred) {
+    if ( !$.isEmptyObject(task) ) {
+        loadUserProgress();
+        setFeelingFromSliderValue();
+        $('#sliderFeeling').off('input').on('input', setFeelingFromSliderValue);
+        $('#sound-clip').html('').append(task.info.embed);
+        $("#cover").attr("src", task.info.album_image);
+        $("#artist").html('').append(task.info.html_artist);
+        $("#title").html('').append(task.info.html_song);
+        $("#album").html('').append(task.info.html_album);
+        $("#license").html('').append(task.info.html_license);
+        $('#task-id').html(task.id);
+        $('#audio_' + task.id).audioPlayer();
+        $('#btn-answer').off('click').on('click', function(evt) {
+            var answer = $('#myFeeling').text();
+            if (typeof answer != 'undefined') {
+                console.log(answer);
+                pybossa.saveTask(task.id, answer).done(function() {
+                    deferred.resolve();
+                });
+                $("#loading").fadeIn(500);
+                if ($("#disqus_thread").is(":visible")) {
+                    $('#disqus_thread').toggle();
+                    $('.btn-disqus').toggle();
+                }
+            }
+            else {
+                $("#error").show();
+            }
+        });
+        $("#loading").hide();
+        var offset = $("#question").offset();
+        offset.left -= 20;
+        offset.top -= 70;
+        $('html, body').animate({
+                scrollTop: offset.top,
+                scrollLeft: offset.left
+                });
+    }
+    else {
+        $(".skeleton").hide();
+        $("#loading").hide();
+        $("#finish").fadeIn(500);
+    }
+});
+
+pybossa.run('jamendo');
+</script>
