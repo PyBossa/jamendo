@@ -1,5 +1,4 @@
 <style>
-
 .mood-selected{
   background-color: rgba(20, 52, 44, 0.7);
   border-radius: 5px;
@@ -11,7 +10,7 @@
 
 .first-container{
   color: #BDBDBD;
-background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/2258x1500/b3a5dc8a27d861ae9124183cfc0a999c/bg_image_for_jamendo_project.jpg) no-repeat top center;
+background: #333 url(http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/bg_image_for_jamendo_project.jpg) no-repeat top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -89,16 +88,6 @@ margin-top: 10px;
     margin-bottom: 15px;
   }
 
-#sliderFeeling{
-    width: 100%;
-    margin-top: 15px;
-    margin-bottom: 30px;
-}
-
-.rangeslider__fill{
-    background: inherit !important;
-}
-
 @media (max-width: 767px){
 
     .text-center-mbl{
@@ -119,6 +108,10 @@ margin-top: 10px;
 /* @media (max-width: 360px) {
     .feedback {margin-top:430px;}
 } */
+
+.img-thumbnail {
+    padding: 8px;
+}
 
 </style>
 <style>
@@ -475,8 +468,6 @@ margin-top: 10px;
 
 (function(e,t,n,r){var i="ontouchstart"in t,s=i?"touchstart":"mousedown",o=i?"touchmove":"mousemove",u=i?"touchend":"mouseup",a=i?"touchcancel":"mouseup",f=function(e){var t=Math.floor(e/3600),n=Math.floor(e%3600/60),r=Math.ceil(e%3600%60);return(t==0?"":t>0&&t.toString().length<2?"0"+t+":":t+":")+(n.toString().length<2?"0"+n:n)+":"+(r.toString().length<2?"0"+r:r)},l=function(e){var t=n.createElement("audio");return!!(t.canPlayType&&t.canPlayType("audio/"+e.split(".").pop().toLowerCase()+";").replace(/no/,""))};e.fn.audioPlayer=function(t){var t=e.extend({classPrefix:"audioplayer",strPlay:"Play",strPause:"Pause",strVolume:"Volume"},t),n={},r={playPause:"playpause",playing:"playing",time:"time",timeCurrent:"time-current",timeDuration:"time-duration",bar:"bar",barLoaded:"bar-loaded",barPlayed:"bar-played",volume:"volume",volumeButton:"volume-button",volumeAdjust:"volume-adjust",noVolume:"novolume",mute:"mute",mini:"mini"};for(var u in r)n[u]=t.classPrefix+"-"+r[u];this.each(function(){if(e(this).prop("tagName").toLowerCase()!="audio")return false;var r=e(this),u=r.attr("src"),c=r.get(0).getAttribute("autoplay"),c=c===""||c==="autoplay"?true:false,h=r.get(0).getAttribute("loop"),h=h===""||h==="loop"?true:false,p=false;if(typeof u==="undefined"){r.find("source").each(function(){u=e(this).attr("src");if(typeof u!=="undefined"&&l(u)){p=true;return false}})}else if(l(u))p=true;var d=e('<div class="'+t.classPrefix+'">'+(p?e("<div>").append(r.eq(0).clone()).html():'<embed src="'+u+'" width="0" height="0" volume="100" autostart="'+c.toString()+'" loop="'+h.toString()+'" />')+'<div class="'+n.playPause+'" title="'+t.strPlay+'"><a href="#">'+t.strPlay+"</a></div></div>"),v=p?d.find("audio"):d.find("embed"),v=v.get(0);if(p){d.find("audio").css({width:0,height:0,visibility:"hidden"});d.append('<div class="'+n.time+" "+n.timeCurrent+'"></div><div class="'+n.bar+'"><div class="'+n.barLoaded+'"></div><div class="'+n.barPlayed+'"></div></div><div class="'+n.time+" "+n.timeDuration+'"></div><div class="'+n.volume+'"><div class="'+n.volumeButton+'" title="'+t.strVolume+'"><a href="#">'+t.strVolume+'</a></div><div class="'+n.volumeAdjust+'"><div><div></div></div></div></div>');var m=d.find("."+n.bar),g=d.find("."+n.barPlayed),y=d.find("."+n.barLoaded),b=d.find("."+n.timeCurrent),w=d.find("."+n.timeDuration),E=d.find("."+n.volumeButton),S=d.find("."+n.volumeAdjust+" > div"),x=0,T=function(e){theRealEvent=i?e.originalEvent.touches[0]:e;v.currentTime=Math.round(v.duration*(theRealEvent.pageX-m.offset().left)/m.width())},N=function(e){theRealEvent=i?e.originalEvent.touches[0]:e;v.volume=Math.abs((theRealEvent.pageY-(S.offset().top+S.height()))/S.height())},C=setInterval(function(){y.width(v.buffered.end(0)/v.duration*100+"%");if(v.buffered.end(0)>=v.duration)clearInterval(C)},100);var k=v.volume,L=v.volume=.111;if(Math.round(v.volume*1e3)/1e3==L)v.volume=k;else d.addClass(n.noVolume);w.html("…");b.text(f(0));v.addEventListener("loadeddata",function(){w.text(f(v.duration));S.find("div").height(v.volume*100+"%");x=v.volume});v.addEventListener("timeupdate",function(){b.text(f(v.currentTime));g.width(v.currentTime/v.duration*100+"%")});v.addEventListener("volumechange",function(){S.find("div").height(v.volume*100+"%");if(v.volume>0&&d.hasClass(n.mute))d.removeClass(n.mute);if(v.volume<=0&&!d.hasClass(n.mute))d.addClass(n.mute)});v.addEventListener("ended",function(){d.removeClass(n.playing)});m.on(s,function(e){T(e);m.on(o,function(e){T(e)})}).on(a,function(){m.unbind(o)});E.on("click",function(){if(d.hasClass(n.mute)){d.removeClass(n.mute);v.volume=x}else{d.addClass(n.mute);x=v.volume;v.volume=0}return false});S.on(s,function(e){N(e);S.on(o,function(e){N(e)})}).on(a,function(){S.unbind(o)})}else d.addClass(n.mini);if(c)d.addClass(n.playing);d.find("."+n.playPause).on("click",function(){if(d.hasClass(n.playing)){e(this).attr("title",t.strPlay).find("a").html(t.strPlay);d.removeClass(n.playing);p?v.pause():v.Stop()}else{e(this).attr("title",t.strPause).find("a").html(t.strPause);d.addClass(n.playing);p?v.play():v.Play()}return false});r.replaceWith(d)});return this}})(jQuery,window,document)
 </script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/1.2.1/rangeslider.min.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/1.2.1/rangeslider.min.js"></script>
 <div class="row">
     <!-- Success and Error Messages for the user --> 
     <div class="col-md-6 col-md-offset-2" style="height:50px">
@@ -499,8 +490,8 @@ margin-top: 10px;
 
 <div class="col-lg-12">
     <div class="bg-container col-md-8 col-md-offset-2">
-        <div class="col-xs-12 col-md-4 text-center-mbl">
-            <img id="cover" class="hidden-xs img-thumbnail img-responsive img-polaroid">
+        <div class="col-xs-12 col-md-3 text-center-mbl">
+            <img id="cover" class="img-responsive img-thumbnail">
         </div>
         <div class="col-xs-12 col-md-8 text-center-mbl top20-mbl">
             <div id="artist"></div>
@@ -511,11 +502,10 @@ margin-top: 10px;
         </div>
         <!-- Feedback items for the user -->
         <div class="col-md-12 text-center feedback">
-            <p>
-                <span id="i18n_tasks_completed">You have completed:</span> 
-                <span id="done" class="label label-info"></span> 
-                <span id="i18n_tasks_from">tasks from</span>
-                <span id="total" class="label label-info"></span>
+            <h3>
+                <span id="left"></span> 
+                <span id="i18n_tasks_left">more songs to go</span> 
+            </h3>
             </p>
         </div>
     </div>
@@ -558,21 +548,14 @@ margin-top: 10px;
  <!-- Start DIV for the submission buttons -->
     <div id="myFeeling"></div>
 
-    <input id="sliderFeeling" type="range" min="0" max="90" step="1" value="45" />
     <button id="btn-answer" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
 </div><!-- End of DIV for the submission buttons -->
 
 <script>
-$('#sliderFeeling').rangeslider({polyfill: false});
-
 function loadUserProgress() {
     pybossa.userProgress('jamendo').done(function(data){
-        var pct = Math.round((data.done*100)/data.total);
-        $("#progress").css("width", pct.toString() +"%");
-        $("#progress").attr("title", pct.toString() + "% completed!");
-        $("#progress").tooltip({'placement': 'left'}); 
-        $("#total").text(data.total);
-        $("#done").text(data.done);
+        var left = data.total - data.done;
+        $("#left").text(left);
     });
 }
 
@@ -629,30 +612,10 @@ pybossa.taskLoaded(function(task, deferred) {
     }
 });
 
-function setFeelingFromSliderValue() {
-    var slider = document.getElementById('sliderFeeling');
-    var myFeeling = document.getElementById('myFeeling');
-    var daFeeling = calculateDaFeeling(slider.value);
-    myFeeling.innerHTML = daFeeling;
-}
-
-function calculateDaFeeling(value) {
-    if (value < 10) return "Joy";
-    if (value < 20) return "Excited";
-    if (value < 30) return "Relaxed";
-    if (value < 40) return "Amused";
-    if (value < 50) return "Indifferent";
-    if (value < 60) return "Sad";
-    if (value < 70) return "Bored";
-    if (value < 80) return "Annoyed";
-    return "Shocked";
-}
 
 pybossa.presentTask(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
-        setFeelingFromSliderValue();
-        $('#sliderFeeling').off('input').on('input', setFeelingFromSliderValue);
         $('#sound-clip').html('').append(task.info.embed);
         $("#cover").attr("src", task.info.album_image);
         $("#artist").html('').append(task.info.html_artist);
