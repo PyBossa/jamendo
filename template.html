@@ -1,20 +1,15 @@
 <style>
-.mood-selected{
-  background-color: rgba(20, 52, 44, 0.85);
-  border-radius: 5px;
-}
-
-.mood-hover{
+.mood-btn{
     background-color: rgba(0, 0, 0, 0);
-  border-radius: 5px; 
+    border-radius: 5px;
     -webkit-transition: all 0.5s ease;
-       -o-transition: all 0.5s ease;
-          transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
-.mood-hover:hover{
-    background-color: rgba(20, 52, 44, 0.85);
-  border-radius: 5px; 
+.mood-btn:hover, .mood-selected{
+    background-color: rgba(20, 52, 44, 0.85) !important;
+    border-radius: 5px;
 }
 
 
@@ -526,31 +521,31 @@ margin-top: 10px;
 </div>
 
 <div id="answer" class="col-md-10 col-md-offset-1 text-center">
-    <div class="col-md-2 answer-btn mood-hover">
+    <div class="col-md-2 mood-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/4150918798b566a395c05ca1cffefd0e/Excited.png">
         <p class="center">Excited</p>
     </div>
-    <div class="col-md-2 answer-btn mood-hover">
+    <div class="col-md-2 mood-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/f15b9ed78eebc4fe89254a09d48386e9/Amused.png">
         <p class="center">Amused</p>
     </div>
-    <div class="col-md-2 answer-btn mood-hover">
+    <div class="col-md-2 mood-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/11a7cacc0a4a683ec4e8e93322d46993/Enjoy.png">
         <p class="center">Enjoy</p>
     </div>
-    <div class="col-md-2 answer-btn mood-hover">
+    <div class="col-md-2 mood-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/6177553d565c2d3ccb22b6a8b355d290/Indifferent.png">
         <p class="center">Indifferent</p>
     </div>
-    <div class="col-md-2 answer-btn mood-hover">
+    <div class="col-md-2 mood-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/e9735a256db8a454832ac815854b844f/bored.png">
         <p class="center">Bored</p>
     </div>
-    <div class="col-md-2 answer-btn mood-hover">
+    <div class="col-md-2 mood-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/dc844b922daa6f02bb7b67912caffe56/sad.png">
         <p class="center">Sad</p>
     </div>
-    <div class="col-md-2 answer-btn mood-hover">
+    <div class="col-md-2 mood-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/35b9d445c4d8a41e8e50d9a1d0ee2392/annoyed.png">
         <p class="center">Annoyed</p>
     </div>
@@ -580,17 +575,17 @@ function loadUserProgress() {
 }
 
 function getSelectedMood() {
-    var moods = $('.answer-btn');
+    var moods = $('.mood-btn');
     return moods.filter(function(index){
-        return $(this).hasClass('moodSelected');
+        return $(this).hasClass('mood-selected');
     }).children('p').text() || undefined;
 }
 
 function addMoodClickEvents() {
-    var moods = $('.answer-btn');
+    var moods = $('.mood-btn');
     moods.off('click').on('click', function(evt) {
-        moods.removeClass('moodSelected');
-        $(this).addClass('moodSelected');
+        moods.removeClass('mood-selected');
+        $(this).addClass('mood-selected');
     })
 }
 
