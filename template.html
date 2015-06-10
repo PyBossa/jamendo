@@ -78,11 +78,6 @@ margin-top: 10px;
   font-size: 18px;
 }
 
-#myFeeling{
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-
 @media (max-width: 767px){
 
     .text-center-mbl{
@@ -471,7 +466,7 @@ margin-top: 10px;
         </div>
         <div id="error" class="alert alert-danger" style="display:none;">
             <a class="close">×</a>
-            <strong>Error!</strong> Something went wrong, please contact the site administrators
+            <strong>What?</strong> Are you made of stone or what?
         </div>
     </div> <!-- End Success and Error Messages for the user -->
 </div> <!-- End of Row -->
@@ -512,36 +507,36 @@ margin-top: 10px;
 </div>
 
 <div id="answer" class="col-md-10 col-md-offset-1 text-center">
-    <div class="col-md-2">
+    <div class="col-md-2 answer-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/4150918798b566a395c05ca1cffefd0e/Excited.png">
         <p class="center">Excited</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 answer-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/f15b9ed78eebc4fe89254a09d48386e9/Amused.png">
         <p class="center">Amused</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 answer-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/11a7cacc0a4a683ec4e8e93322d46993/Enjoy.png">
         <p class="center">Enjoy</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 answer-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/6177553d565c2d3ccb22b6a8b355d290/Indifferent.png">
         <p class="center">Indifferent</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 answer-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/e9735a256db8a454832ac815854b844f/bored.png">
         <p class="center">Bored</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 answer-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/dc844b922daa6f02bb7b67912caffe56/sad.png">
         <p class="center">Sad</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 answer-btn">
         <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/35b9d445c4d8a41e8e50d9a1d0ee2392/annoyed.png">
         <p class="center">Annoyed</p>
     </div>
 
-    <button id="btn-answer" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
+    <button id="btn-next" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
 </div>
 
 <script>
@@ -550,6 +545,21 @@ function loadUserProgress() {
         var left = data.total - data.done;
         $("#left").text(left);
     });
+}
+
+function getSelectedMood() {
+    var moods = $('.answer-btn');
+    return moods.filter(function(index){
+        return $(this).hasClass('moodSelected');
+    }).children('p').text() || undefined;
+}
+
+function addMoodClickEvents() {
+    var moods = $('.answer-btn');
+    moods.off('click').on('click', function(evt) {
+        moods.removeClass('moodSelected');
+        $(this).addClass('moodSelected');
+    })
 }
 
 pybossa.taskLoaded(function(task, deferred) {
@@ -609,6 +619,7 @@ pybossa.taskLoaded(function(task, deferred) {
 pybossa.presentTask(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
+        addMoodClickEvents();
         $('#sound-clip').html('').append(task.info.embed);
         $("#cover").attr("src", task.info.album_image);
         $("#artist").html('').append(task.info.html_artist);
@@ -616,8 +627,8 @@ pybossa.presentTask(function(task, deferred) {
         $("#album").html('').append(task.info.html_album);
         $("#license").html('').append(task.info.html_license);
         $('#audio_' + task.id).audioPlayer();
-        $('#btn-answer').off('click').on('click', function(evt) {
-            var answer = $('#myFeeling').text();
+        $('#btn-next').off('click').on('click', function(evt) {
+            var answer = getSelectedMood();
             if (typeof answer != 'undefined') {
                 console.log(answer);
                 pybossa.saveTask(task.id, answer).done(function() {
