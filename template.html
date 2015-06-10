@@ -613,10 +613,6 @@ pybossa.presentTask(function(task, deferred) {
                     deferred.resolve();
                 });
                 $("#loading").fadeIn(500);
-                if ($("#disqus_thread").is(":visible")) {
-                    $('#disqus_thread').toggle();
-                    $('.btn-disqus').toggle();
-                }
             }
             else {
                 $("#error").show();
