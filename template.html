@@ -526,31 +526,31 @@ margin-top: 10px;
 
 <div id="answer" class="col-md-10 col-md-offset-1 text-center">
     <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
-        <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Excited.png">
+        <img src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Excited.png">
         <p class="center">Excited</p>
     </div>
     <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
-        <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Amused.png">
+        <img src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Amused.png">
         <p class="center">Amused</p>
     </div>
     <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
-        <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Enjoy.png">
+        <img src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Enjoy.png">
         <p class="center">Enjoy</p>
     </div>
     <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
-        <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Indifferent.png">
+        <img src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Indifferent.png">
         <p class="center">Indifferent</p>
     </div>
     <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
-        <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/bored.png">
+        <img src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/bored.png">
         <p class="center">Bored</p>
     </div>
     <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
-        <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/sad.png">
+        <img src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/sad.png">
         <p class="center">Sad</p>
     </div>
     <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
-        <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/annoyed.png">
+        <img src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/annoyed.png">
         <p class="center">Annoyed</p>
     </div>
 
@@ -663,6 +663,7 @@ pybossa.presentTask(function(task, deferred) {
             if (typeof answer != 'undefined') {
                 console.log(answer);
                 pybossa.saveTask(task.id, answer).done(function() {
+                    console.log('saveeed')
                     deferred.resolve();
                 });
             }
@@ -671,13 +672,6 @@ pybossa.presentTask(function(task, deferred) {
                 $("#error").fadeOut(6000);
             }
         });
-        var offset = $("#questio").offset();
-        offset.left -= 20;
-        offset.top -= 70;
-        $('html, body').animate({
-                scrollTop: offset.top,
-                scrollLeft: offset.left
-                });
     }
     else {
         $(".skeleton").hide();
