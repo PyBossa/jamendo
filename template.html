@@ -1,4 +1,24 @@
 <style>
+.container-fluid {
+
+}
+
+.first-container{
+  color: #BDBDBD;
+background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/3613x2400/67d74773f1635139fc5629742fda6726/bg_image_for_jamendo_project.jpg) no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment:fixed;
+  padding-bottom: 100px;
+  height: auto;
+}
+
+.project .project-content{
+    background-color: transparent;
+}
+
 .app-title {
   display: none;
 }
@@ -17,11 +37,7 @@
 }
 
 .bg-container{
-    background-color: #ccc;
-    border-radius: 5px;
-    height: auto;
     padding: 20px 0 20px 0px;
-    margin-bottom: 30px;
 }
 
 #artist{
@@ -452,7 +468,7 @@ margin-top: 10px;
     task.
 -->
 <div class="upper">
-<div class="row skeleton"> <!-- Start Skeleton Row-->
+<div class="skeleton"> <!-- Start Skeleton Row-->
     <div class="col-md-12"><!-- Start of Question and Submission DIV (column) -->
         <h1 id="question"><span id="i18n_question">How do you feel about this song?</span></h1> <!-- The question will be loaded here -->
     </div>
@@ -484,7 +500,7 @@ margin-top: 10px;
  <!-- Start DIV for the submission buttons -->
     <div id="myFeeling"></div>
     <input id="sliderFeeling" type="range" min="0" max="90" step="1" value="45" />
-    <button id="btn-answer" class="btn btn-lg btn-primary" style="margin-top:20px;">Save my answer</button>
+    <button id="btn-answer" class="btn btn-lg btn-primary" style="margin-top:20px;">Next song</button>
 </div><!-- End of DIV for the submission buttons -->
 
 <script>
@@ -566,8 +582,7 @@ function calculateDaFeeling(value) {
     if (value < 60) return "Sad";
     if (value < 70) return "Bored";
     if (value < 80) return "Annoyed";
-    if (value < 90) return "Shocked";
-    return "Happy";
+    return "Shocked";
 }
 
 pybossa.presentTask(function(task, deferred) {
@@ -581,7 +596,6 @@ pybossa.presentTask(function(task, deferred) {
         $("#title").html('').append(task.info.html_song);
         $("#album").html('').append(task.info.html_album);
         $("#license").html('').append(task.info.html_license);
-        $('#task-id').html(task.id);
         $('#audio_' + task.id).audioPlayer();
         $('#btn-answer').off('click').on('click', function(evt) {
             var answer = $('#myFeeling').text();
