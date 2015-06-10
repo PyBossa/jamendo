@@ -1,7 +1,11 @@
 <style>
+.col-md-2{
+    width: 14%;
+}
+
 .first-container{
   color: #BDBDBD;
-background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/3613x2400/67d74773f1635139fc5629742fda6726/bg_image_for_jamendo_project.jpg) no-repeat top center;
+background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/2258x1500/b3a5dc8a27d861ae9124183cfc0a999c/bg_image_for_jamendo_project.jpg) no-repeat top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -67,6 +71,7 @@ margin-top: 10px;
 
 .feedback{
     margin-top: 15px;
+  font-size: 18px;
 }
 
 #myFeeling{
@@ -500,7 +505,7 @@ margin-top: 10px;
         </div>
         <!-- Feedback items for the user -->
         <div class="col-md-12 text-center feedback">
-            <p class="small">
+            <p>
                 <span id="i18n_tasks_completed">You have completed:</span> 
                 <span id="done" class="label label-info"></span> 
                 <span id="i18n_tasks_from">tasks from</span>
@@ -510,9 +515,38 @@ margin-top: 10px;
     </div>
 </div>
 
-<div id="answer" class="col-md-6 col-md-offset-3 text-center">
+<div id="answer" class="col-md-10 col-md-offset-1 text-center">
+<div class="col-md-2">
+        <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/4150918798b566a395c05ca1cffefd0e/Excited.png">
+        <p class="center">Excited</p>
+    </div>
+    <div class="col-md-2">
+        <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/f15b9ed78eebc4fe89254a09d48386e9/Amused.png">
+        <p class="center">Amused</p>
+    </div>
+    <div class="col-md-2">
+        <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/11a7cacc0a4a683ec4e8e93322d46993/Enjoy.png">
+        <p class="center">Enjoy</p>
+    </div>
+    <div class="col-md-2">
+        <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/6177553d565c2d3ccb22b6a8b355d290/Indifferent.png">
+        <p class="center">Indifferent</p>
+    </div>
+    <div class="col-md-2">
+        <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/e9735a256db8a454832ac815854b844f/bored.png">
+        <p class="center">Bored</p>
+    </div>
+    <div class="col-md-2">
+        <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/dc844b922daa6f02bb7b67912caffe56/sad.png">
+        <p class="center">Sad</p>
+    </div>
+    <div class="col-md-2">
+        <img class="img-responsive"src="https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/140x140/35b9d445c4d8a41e8e50d9a1d0ee2392/annoyed.png">
+        <p class="center">Annoyed</p>
+    </div>
  <!-- Start DIV for the submission buttons -->
     <div id="myFeeling"></div>
+
     <input id="sliderFeeling" type="range" min="0" max="90" step="1" value="45" />
     <button id="btn-answer" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
 </div><!-- End of DIV for the submission buttons -->
