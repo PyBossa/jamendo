@@ -1,20 +1,15 @@
 <style>
-.mood-selected{
-  background-color: rgba(20, 52, 44, 0.85);
-  border-radius: 5px;
-}
-
-.mood-hover{
+.mood-btn{
     background-color: rgba(0, 0, 0, 0);
-  border-radius: 5px; 
+    border-radius: 5px;
     -webkit-transition: all 0.5s ease;
-       -o-transition: all 0.5s ease;
-          transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
-.mood-hover:hover{
-    background-color: rgba(20, 52, 44, 0.85);
-  border-radius: 5px; 
+.mood-btn:hover, .mood-selected{
+    background-color: rgba(20, 52, 44, 0.85) !important;
+    border-radius: 5px;
 }
 
 
@@ -70,7 +65,7 @@ background: #333 url(http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e
     opacity: 1;
 }
 
-#btn-answer{
+#btn-next{
     margin-top: 20px;
     width: 200px;
 }
@@ -115,11 +110,6 @@ margin-top: 10px;
     margin-top: 15px;
   font-size: 18px;
 }
-
-#myFeeling{
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
 
 @media (max-width: 767px){
 
@@ -528,59 +518,57 @@ margin-top: 10px;
         </div>
     </div>
 </div>
-<div class="skeleton"> <!-- Start Skeleton Row-->
-    <div class="col-md-12"><!-- Start of Question and Submission DIV (column) -->
-        <h1 id="question"><span id="i18n_question">How do you feel about this song?</span></h1> <!-- The question will be loaded here -->
+<div class="skeleton">
+    <div class="col-md-12">
+        <h1 id="question"><span id="i18n_question">How do you feel about this song?</span></h1>
     </div>
 </div>
 
 <div id="answer" class="col-md-10 col-md-offset-1 text-center">
-<div class="col-md-2 col-sm-6 col-xs-12 mood-hover">
+    <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
         <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Excited.png">
         <p class="center">Excited</p>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12 mood-hover">
+    <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
         <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Amused.png">
         <p class="center">Amused</p>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12 mood-hover">
+    <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
         <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Enjoy.png">
         <p class="center">Enjoy</p>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12 mood-hover">
+    <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
         <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Indifferent.png">
         <p class="center">Indifferent</p>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12 mood-hover">
+    <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
         <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/bored.png">
         <p class="center">Bored</p>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12 mood-hover">
+    <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
         <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/sad.png">
         <p class="center">Sad</p>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12 mood-hover">
+    <div class="col-md-2 col-sm-6 col-xs-12 mood-btn">
         <img class="img-responsive"src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/annoyed.png">
         <p class="center">Annoyed</p>
     </div>
- <!-- Start DIV for the submission buttons -->
-    <div id="myFeeling"></div>
 
-    <button id="btn-answer" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
-</div><!-- End of DIV for the submission buttons -->
+    <button id="btn-next" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
+</div>
 
 <div class="row">
     <!-- Success and Error Messages for the user --> 
-    <div class="col-md-6 col-md-offset-3 text-center">
-        <div id="finish" class="alert alert-success center-block" style="display:none;">
+    <div class="col-md-6 col-md-offset-2" style="height:50px">
+        <div id="finish" class="alert alert-success" style="display:none;">
             <strong id="i18n_congratulations">Congratulations!</strong> <span id="i18n_congratulations_text">You have felt every single song in this place!</span>
         </div>
-        <div id="error" class="alert alert-danger center-block" style="display:none;">
+        <div id="error" class="alert alert-danger" style="display:none;">
             <a class="close">×</a>
-            <strong>Error!</strong> Something went wrong, please contact the site administrators
+            <strong>What?</strong> Are you made of stone or what?
         </div>
     </div> <!-- End Success and Error Messages for the user -->
-</div>
+</div> <!-- End of Row -->
 
 <script>
 function loadUserProgress() {
@@ -588,6 +576,21 @@ function loadUserProgress() {
         var left = data.total - data.done;
         $("#left").text(left);
     });
+}
+
+function getSelectedMood() {
+    var moods = $('.mood-btn');
+    return moods.filter(function(index){
+        return $(this).hasClass('mood-selected');
+    }).children('p').text() || undefined;
+}
+
+function addMoodClickEvents() {
+    var moods = $('.mood-btn');
+    moods.off('click').on('click', function(evt) {
+        moods.removeClass('mood-selected');
+        $(this).addClass('mood-selected');
+    })
 }
 
 pybossa.taskLoaded(function(task, deferred) {
@@ -647,6 +650,7 @@ pybossa.taskLoaded(function(task, deferred) {
 pybossa.presentTask(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
+        addMoodClickEvents();
         $('#sound-clip').html('').append(task.info.embed);
         $("#cover").attr("src", task.info.album_image);
         $("#artist").html('').append(task.info.html_artist);
@@ -654,8 +658,8 @@ pybossa.presentTask(function(task, deferred) {
         $("#album").html('').append(task.info.html_album);
         $("#license").html('').append(task.info.html_license);
         $('#audio_' + task.id).audioPlayer();
-        $('#btn-answer').off('click').on('click', function(evt) {
-            var answer = $('#myFeeling').text();
+        $('#btn-next').off('click').on('click', function(evt) {
+            var answer = getSelectedMood();
             if (typeof answer != 'undefined') {
                 console.log(answer);
                 pybossa.saveTask(task.id, answer).done(function() {
@@ -664,6 +668,7 @@ pybossa.presentTask(function(task, deferred) {
             }
             else {
                 $("#error").show();
+                $("#error").fadeOut(6000);
             }
         });
         var offset = $("#questio").offset();
