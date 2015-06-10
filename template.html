@@ -1,8 +1,4 @@
 <style>
-.container-fluid {
-
-}
-
 .first-container{
   color: #BDBDBD;
 background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da5a0f7a877/3613x2400/67d74773f1635139fc5629742fda6726/bg_image_for_jamendo_project.jpg) no-repeat top center;
@@ -15,13 +11,25 @@ background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da
   height: auto;
 }
 
-.project .project-content{
+.project .project-content,
+.supported {
     background-color: transparent;
+    color: #fff;
+}
+
+.supported ul li{
+    opacity: 1;
+}
+
+#btn-answer{
+    margin-top: 20px;
+    width: 200px;
 }
 
 .app-title {
   display: none;
 }
+
 .upper {
     background-color: rgba(0,0,0,0.3);
 }
@@ -29,7 +37,7 @@ background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da
   margin-bottom: 20px;
   text-align: center;
   font-size: 30px;
-  color: #2B9884;
+  color: #fff;
 }
 
 .text-center{
@@ -43,8 +51,13 @@ background: #333 url(https://trello-attachments.s3.amazonaws.com/5562e25a58bb2da
 #artist{
     font-size: 24px
 }
-#artist a{
-    color: #666;
+#artist a,
+a{
+    color: #fff;
+}
+
+a:hover{
+    color:#fff;
 }
 
 #title, #album, #license{
@@ -505,7 +518,7 @@ margin-top: 10px;
  <!-- Start DIV for the submission buttons -->
     <div id="myFeeling"></div>
     <input id="sliderFeeling" type="range" min="0" max="90" step="1" value="45" />
-    <button id="btn-answer" class="btn btn-lg btn-primary" style="margin-top:20px;">Next song</button>
+    <button id="btn-answer" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
 </div><!-- End of DIV for the submission buttons -->
 
 <script>
