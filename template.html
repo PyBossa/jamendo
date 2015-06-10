@@ -661,6 +661,7 @@ pybossa.presentTask(function(task, deferred) {
             if (typeof answer != 'undefined') {
                 console.log(answer);
                 pybossa.saveTask(task.id, answer).done(function() {
+                    console.log('saveeed')
                     deferred.resolve();
                 });
             }
@@ -669,13 +670,6 @@ pybossa.presentTask(function(task, deferred) {
                 $("#error").fadeOut(6000);
             }
         });
-        var offset = $("#questio").offset();
-        offset.left -= 20;
-        offset.top -= 70;
-        $('html, body').animate({
-                scrollTop: offset.top,
-                scrollLeft: offset.left
-                });
     }
     else {
         $(".skeleton").hide();
