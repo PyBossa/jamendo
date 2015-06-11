@@ -612,6 +612,8 @@ function getSelectedMood() {
 
 function addMoodClickEvents() {
     var moods = $('.mood-btn');
+    $('.mood-btn').removeClass('mood-selected');
+    $('#btn-next').trigger('blur');
     moods.off('click').on('click', function(evt) {
         moods.removeClass('mood-selected');
         $(this).addClass('mood-selected');
