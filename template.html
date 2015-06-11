@@ -142,9 +142,9 @@ margin-top: 10px;
         font-size: 15px !important;
         font-weight: bold;
     }
-    .feedback {margin-top:150px;
-        font-size: 13px !important;
-        }
+    #question {
+        margin-top: 160px;
+    }
     .skeleton {
         margin-top: -36px;
     }
@@ -152,6 +152,9 @@ margin-top: 10px;
 
     .audioplayer {
         font-size: 10px !important;
+    }
+    #btn-next {
+        margin-top: 5px !important;
     }
 }
 
@@ -531,14 +534,6 @@ margin-top: 10px;
             <!--<div id="license"></div>-->
             <div id="sound-clip"></div>
         </div>
-        <!-- Feedback items for the user -->
-        <div class="col-md-12 text-center feedback">
-            <p>
-                <span id="left"></span> 
-                <span id="i18n_tasks_left">more songs to go</span> 
-            </p>
-            </p>
-        </div>
     </div>
 </div>
 <div class="skeleton">
@@ -576,8 +571,15 @@ margin-top: 10px;
         <img class="img-responsive"  src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/annoyed.png">
         <p class="center">Annoyed</p>
     </div>
-
+        <!-- Feedback items for the user -->
+        <div class="col-xs-12 col-md-12 text-center feedback">
+            <p>
+                <span id="left"></span> 
+                <span id="i18n_tasks_left">more songs to go</span> 
+            </p>
     <button id="btn-next" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
+        </div>
+
 </div>
 
 <div class="row">
