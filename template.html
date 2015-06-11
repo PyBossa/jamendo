@@ -623,6 +623,7 @@ pybossa.taskLoaded(function(task, deferred) {
         embed.attr("src", task.info.audio_cdn);
         embed.attr("width", '100%');
         embed.prop('controls', true);
+        embed.prop('loop', true);
         task.info.embed = embed;
 
         // ARTIST
@@ -681,6 +682,7 @@ pybossa.presentTask(function(task, deferred) {
         $("#album").html('').append(task.info.html_album);
         $("#license").html('').append(task.info.html_license);
         $('#audio_' + task.id).audioPlayer();
+        $('.audioplayer-playpause').trigger('click');
         $('#btn-next').off('click').on('click', function(evt) {
             var answer = getSelectedMood();
             if (typeof answer != 'undefined') {
