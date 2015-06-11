@@ -4,17 +4,27 @@
 }
 .mood-btn{
     background-color: rgba(0, 0, 0, 0);
+    opacity:.6;
     border-radius: 5px;
     -webkit-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     cursor: hand;
     cursor: pointer;
+    padding-top:10px;
+}
+
+.mood-btn img{
+    opacity:.6;
 }
 
 .mood-btn:hover, .mood-selected{
     background-color: rgba(20, 52, 44, 0.85) !important;
     border-radius: 5px;
+}
+
+.mood-btn:hover img{
+    opacity:1;
 }
 
 
@@ -80,9 +90,9 @@ background: #333 url(http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e
 }
 
 #question{
-  margin-bottom: 20px;
+  margin: 25px 0px;
   text-align: center;
-  font-size: 30px;
+  font-size: 24px;
   color: #fff;
 }
 
@@ -91,7 +101,7 @@ background: #333 url(http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e
 }
 
 .bg-container{
-    padding: 20px 0 20px 0px;
+    padding: 10px 0 20px 0px;
 }
 
 #artist{
@@ -112,8 +122,8 @@ margin-top: 10px;
 }
 
 .feedback{
-    margin-top: 15px;
-  font-size: 18px;
+  margin: 30px 0px 0px 0px;
+  font-size: 16px;
 }
 
 @media (max-width: 767px){
@@ -130,6 +140,9 @@ margin-top: 10px;
     }
     #title, #album, #license{
         font-size: 16px;
+    }
+    #question{
+        margin:25px 0px 25px 0px;
     }
 }
 
@@ -580,7 +593,7 @@ margin-top: 10px;
                 <span id="left"></span> 
                 <span id="i18n_tasks_left">more songs to go</span> 
             </p>
-    <button id="btn-next" class="btn btn-lg btn-default contribute" style="margin-top:20px;">Next song</button>
+    <button id="btn-next" class="btn btn-lg btn-default contribute" style="margin-top:0px;">Next song</button>
         </div>
 
 </div>
