@@ -1,10 +1,13 @@
 <style>
+.supported{
+    margin-top: -100px !important;
+}
 #flashalert{
     display:none !important;
 }
 .mood-btn{
     background-color: rgba(0, 0, 0, 0);
-    opacity:.6;
+    opacity:.8;
     border-radius: 5px;
     -webkit-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -15,7 +18,7 @@
 }
 
 .mood-btn img{
-    opacity:.6;
+    opacity:.8;
 }
 
 .mood-btn:hover, .mood-selected{
@@ -57,7 +60,7 @@
 
 .first-container{
   color: #BDBDBD;
-background: #333 url(http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/bg_image_for_jamendo_project.jpg) no-repeat top center;
+background: #333 url(http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/bg_image_for_jamendo_project_dark.jpg) no-repeat top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -70,12 +73,16 @@ background: #333 url(http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e
 .press > .container > h3 {
   font-size: 14px;
   margin: -10px 0 5px 0;
+  opacity:.5;
 }
 
 .project .project-content,
 .supported {
     background-color: transparent;
     color: #fff;
+}
+.supported {
+    opacity:.5;
 }
 
 .project .project-content{
@@ -604,18 +611,34 @@ margin-top: 10px;
 
 </div>
 
-<div class="row">
-    <!-- Success and Error Messages for the user --> 
-    <div class="col-md-8 col-md-offset-2" style="height:50px">
-        <div id="finish" class="alert alert-success" style="display:none;">
-            <strong id="i18n_congratulations">Congratulations!</strong> <span id="i18n_congratulations_text">You have felt every single song in this place!</span>
-        </div>
-        <div id="error" class="alert alert-danger" style="display:none;">
-            <a class="close">×</a>
-            <strong>What?</strong> Are you made of stone or what?
-        </div>
-    </div> <!-- End Success and Error Messages for the user -->
-</div> <!-- End of Row -->
+ <div id="errormodal" class="modal fade" style="color:black;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">WHAT??!!</h4>
+      </div>
+      <div class="modal-body">
+          <p>Are you made of stone?</p> <p>Select one mood, please.</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+ <div id="finishmodal" class="modal fade" style="color:black;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Congratulations</h4>
+      </div>
+      <div class="modal-body">
+          <p>You have felt every single song!</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <script>
 function loadUserProgress() {
@@ -690,8 +713,6 @@ pybossa.taskLoaded(function(task, deferred) {
         license.text('Creative Commons');
         p.append(license);
         task.info.html_license = p;
-
-
     }
     else {
         deferred.resolve(task);
@@ -722,9 +743,7 @@ pybossa.presentTask(function(task, deferred) {
                 });
             }
             else {
-                console.log('Error');
-                console.log(answer);
-                $("#error").show();
+                $("#errormodal").modal('show');
                 $("#error").fadeOut(6000);
             }
         });
@@ -732,8 +751,7 @@ pybossa.presentTask(function(task, deferred) {
     else {
         $(".basedom").hide();
         $(".skeleton").hide();
-        $(".feedback").hide();
-        $("#finish").fadeIn(500);
+        $("#finishmodal").modal('show');
     }
 });
 
