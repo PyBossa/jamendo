@@ -1,4 +1,7 @@
 <style>
+.supported{
+    margin-top: -100px !important;
+}
 #flashalert{
     display:none !important;
 }
@@ -608,18 +611,34 @@ margin-top: 10px;
 
 </div>
 
-<div class="row">
-    <!-- Success and Error Messages for the user --> 
-    <div class="col-md-6 col-md-offset-2" style="height:50px">
-        <div id="finish" class="alert alert-success" style="display:none;">
-            <strong id="i18n_congratulations">Congratulations!</strong> <span id="i18n_congratulations_text">You have felt every single song in this place!</span>
-        </div>
-        <div id="error" class="alert alert-danger" style="display:none;">
-            <a class="close">×</a>
-            <strong>What?</strong> Are you made of stone or what?
-        </div>
-    </div> <!-- End Success and Error Messages for the user -->
-</div> <!-- End of Row -->
+ <div id="errormodal" class="modal fade" style="color:black;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">WHAT??!!</h4>
+      </div>
+      <div class="modal-body">
+          <p>Are you made of stone?</p> <p>Select one mood, please.</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+ <div id="finishmodal" class="modal fade" style="color:black;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Congratulations</h4>
+      </div>
+      <div class="modal-body">
+          <p>You have felt every single song!</p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <script>
 function loadUserProgress() {
@@ -723,14 +742,14 @@ pybossa.presentTask(function(task, deferred) {
                 });
             }
             else {
-                $("#error").show();
+                $("#errormodal").modal('show');
                 $("#error").fadeOut(6000);
             }
         });
     }
     else {
         $(".skeleton").hide();
-        $("#finish").fadeIn(500);
+        $("#finishmodal").modal('show');
     }
 });
 
