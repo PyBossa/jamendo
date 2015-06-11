@@ -538,7 +538,7 @@ margin-top: 10px;
 
 <div class="upper">
 
-<div class="col-lg-12">
+<div class="col-lg-12 basedom">
     <div class="bg-container col-md-8 col-md-offset-2">
         <div class="hidden-xs col-xs-12 col-sm-3 col-md-3 col-xs-2 text-center-mbl">
             <img id="cover" class="img-responsive img-thumbnail">
@@ -552,13 +552,13 @@ margin-top: 10px;
         </div>
     </div>
 </div>
-<div class="skeleton">
+<div class="skeleton basedom">
     <div class="col-md-12">
         <h1 id="question"><span id="i18n_question">How do you feel about this song?</span></h1>
     </div>
 </div>
 
-<div id="answer" class="col-md-10 col-md-offset-1 text-center">
+<div id="answer" class="col-md-10 col-md-offset-1 text-center basedom">
     <div class="col-md-2 col-sm-6 col-xs-3 mood-btn">
         <img class="img-responsive" src="http://f71781f737101bc6fff0-8cede78b66090575565ba3d075bf21e4.r12.cf2.rackcdn.com/jamendo/Excited.png">
         <p class="center">Excited</p>
@@ -644,6 +644,9 @@ pybossa.taskLoaded(function(task, deferred) {
         embed.attr("width", '100%');
         embed.prop('controls', true);
         embed.prop('loop', true);
+        embed.on("loadeddata", function(){
+            deferred.resolve(task);
+            });
         task.info.embed = embed;
 
         // ARTIST
@@ -683,7 +686,6 @@ pybossa.taskLoaded(function(task, deferred) {
         task.info.html_license = p;
 
 
-        deferred.resolve(task);
     }
     else {
         deferred.resolve(task);
@@ -702,7 +704,8 @@ pybossa.presentTask(function(task, deferred) {
         $("#album").html('').append(task.info.html_album);
         $("#license").html('').append(task.info.html_license);
         $('#audio_' + task.id).audioPlayer();
-        $('.audioplayer-playpause').trigger('click');
+        //$('.audioplayer-playpause').trigger('click');
+        //$('.audioplayer-playpause').trigger('touchstart');
         $('#btn-next').off('click').on('click', function(evt) {
             var answer = getSelectedMood();
             if (typeof answer != 'undefined') {
@@ -713,13 +716,17 @@ pybossa.presentTask(function(task, deferred) {
                 });
             }
             else {
+                console.log('Error');
+                console.log(answer);
                 $("#error").show();
                 $("#error").fadeOut(6000);
             }
         });
     }
     else {
+        $(".basedom").hide();
         $(".skeleton").hide();
+        $(".feedback").hide();
         $("#finish").fadeIn(500);
     }
 });
